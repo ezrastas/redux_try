@@ -1,12 +1,18 @@
 import React from 'react';
-import { List, Map } from 'immutable';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './components/reducer';
+import { TodoList } from './containers';
+//
+// import TodoApp from './components/TodoApp'
 
-import TodoApp from './components/TodoApp'
+const store = createStore(reducer);
 
-const Todos = List([
-  Map({ id: 0, idDone: true, text: '123'}),
-  Map({ id: 1, idDone: false, text: '321' })
-]);
 export default function App() {
-  return <TodoApp todos={Todos} />;
+  return (
+    <Provider store={store}>
+      <TodoList />
+    </Provider>
+  );
 }

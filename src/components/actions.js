@@ -1,12 +1,19 @@
 import { uniqueId } from 'lodash';
 
-export default function addTodo(text) {
+export function addTodo(text) {
   return {
     type: 'ADD_TODO',
     payload: {
       id: uniqueId(),
       isDone: false,
-      text: text,
-    },
+      text: text
+    }
+  };
+}
+
+export function toggleTodo(id) {
+  return {
+    type: 'TOGGLE_TODO',
+    payload: id
   };
 }

@@ -7,7 +7,13 @@ export default function reducer(todos=init, action) {
     case 'ADD_TODO':
       return todos.push(Map(action.payload));
     case 'TOGGLE_TODO':
-      return ("0");
+      return todos.map(t => {
+        if(t.get('id') === action.payload) {
+          return t.update('isDone', isDone => !isDone);
+        } else {
+          return t;
+        }
+      });
     default:
       return todos;
   }
